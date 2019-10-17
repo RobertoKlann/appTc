@@ -1,2 +1,2 @@
-# appTc
-App do TCC
+# tcc
+Meu trabalho de conclusão de curso

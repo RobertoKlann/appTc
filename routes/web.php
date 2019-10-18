@@ -27,11 +27,11 @@ Route::group([
 
 Route::group([
     'namespace'  => 'BobWaiter',
-    'prefix'     => 'app',
-    'middleware' => 'auth'
+    'prefix'     => 'app'//,
+    //'middleware' => 'auth'
 ], function($router) {
     Route::get('{route}', 'HomeController@index')->where('route', 'index|home');
 
     //Consultas
-    Route::get('/home', 'AppController@index')->name('index');
+    Route::get('/estabelecimentos', 'AppController@index')->name('estabelecimentos');
 });

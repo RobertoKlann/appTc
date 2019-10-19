@@ -29,7 +29,7 @@
                 </form>
 
                 <div id="formFooter">
-                    <a class="underlineHover" href="#" id="anchorLogin" style="color: #0d0d0d;">Criar uma conta</a>
+                    <a class="underlineHover" href="{{ url('app/cadastroUsuario') }}" id="anchorLogin" style="color: #0d0d0d;">Criar uma conta</a>
                 </div>
             </div>
             <br>

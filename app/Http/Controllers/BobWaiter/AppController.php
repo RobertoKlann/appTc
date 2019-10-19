@@ -17,4 +17,8 @@ class AppController extends Controller {
         return view('app/ViewEstabelecimentos');
     }
 
+    public function createUsuario() {
+        return view('app/ViewCadastroUsuario');
+    }
+
 }

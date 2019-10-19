@@ -34,4 +34,8 @@ Route::group([
 
     //Consultas
     Route::get('/estabelecimentos', 'AppController@index')->name('estabelecimentos');
+
+    //Cadastros
+    Route::get('/cadastroUsuario', 'AppController@createUsuario')->name('cadastroUsuario');
+
 });

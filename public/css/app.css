@@ -92,7 +92,7 @@ h2.active {
     transform: scale(0.95);
   }
   
-  input[type=text] {
+  .teste {
     background-color: #f6f6f6;
     border: none;
     color: #0d0d0d;
@@ -120,9 +120,7 @@ h2.active {
   
   input[type=text]:placeholder {
     color: #cccccc;
-  }
-  
-  
+  }  
   
   /* ANIMATIONS */
   
@@ -245,4 +243,24 @@ h2.active {
 
 .imgCenter {
     margin: 10px;
+}
+
+.ui-overlay-a, .ui-page-theme-a, .ui-page-theme-a .ui-panel-wrapper {
+    background-color: #ff0000f5;
+}
+
+.label-cadastro {
+    color: #fff;
+    font-size: 12px !important;
+    text-shadow: none !important;
+}
+
+.nav-top-fixed {
+    position: fixed;
+    height: 50px !important;
+    width: 100vw !important;
+}
+
+.btn-red-app {
+    background-color: #ff0000f5 !important;
 }

@@ -33,9 +33,10 @@ Route::group([
     Route::get('{route}', 'HomeController@index')->where('route', 'index|home');
 
     //Consultas
-    Route::get('/estabelecimentos', 'AppController@index')->name('estabelecimentos');
+    Route::get('/estabelecimentos', 'EstabelecimentoController@index')->name('estabelecimentos');
 
     //Cadastros
-    Route::get('/cadastroUsuario', 'AppController@createUsuario')->name('cadastroUsuario');
+    Route::get('/cadastroUsuario', 'UsuarioController@createUsuario')->name('cadastroUsuario');
 
+    Route::get('/usuario/perfil', 'UsuarioController@indexUsuario')->name('usuario.perfil');
 });

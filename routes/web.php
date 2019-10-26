@@ -33,7 +33,9 @@ Route::group([
     Route::get('{route}', 'HomeController@index')->where('route', 'index|home');
 
     //Consultas
-    Route::get('/estabelecimentos', 'EstabelecimentoController@index')->name('estabelecimentos');
+    Route::get('/estaberlecimento/cardapio', 'EstabelecimentoController@cardapio')->name('estabelecimento.cardapio');
+    Route::get('/estabelecimentos'         , 'EstabelecimentoController@index')->name('estabelecimentos');
+    Route::get('/pedidos'                  , 'PedidoController@index')->name('pedidos');
 
     //Cadastros
     Route::get('/cadastroUsuario', 'UsuarioController@createUsuario')->name('cadastroUsuario');

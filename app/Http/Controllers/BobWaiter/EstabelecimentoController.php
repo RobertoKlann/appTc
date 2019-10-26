@@ -17,4 +17,12 @@ class EstabelecimentoController extends Controller {
         return view('app/ViewEstabelecimentos');
     }
 
+    public function cardapio() {
+        return view('app/ViewCardapio');
+    }
+
+    public function produtoCategoria() {
+        return view('app/ViewProdutoCategoria');
+    }
+
 }

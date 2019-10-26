@@ -79,7 +79,6 @@
                                         <label class="col-lg-3 col-form-label form-control-label"></label>
                                         <div class="col-lg-9">
                                             <input type="button" class="btn btn-red-app mb-0" value="Confirmar">
-                                            <input type="button" id="voltar-login" class="btn btn-red-app mb-0" value="Voltar" style="width: 240px;">
                                         </div>
                                     </div>
                                 </form>
@@ -88,14 +87,8 @@
                     </div>
                 </div>
             </div>
-
-            <div class="navFooter" data-role="navbar" data-iconpos="bottom">
-                <ul>
-                    <li><a href="{{ url('app/estabelecimentos') }}" id="home" data-icon="grid">Inicio</a></li>
-                    <li><a href="#" id="pedidos" data-icon="star">Pedidos</a></li>
-                    <li><a href="{{ url('app/usuario/perfil') }}" id="perfil" data-icon="gear">Perfil</a></li>
-                </ul>
-            </div>
+            @component('app.componentes.nav')
+            @endcomponent
         </div>
         <script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
         <script src="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>

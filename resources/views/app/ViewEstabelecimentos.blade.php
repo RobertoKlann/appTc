@@ -11,48 +11,16 @@
         <link href="/css/app.css" type="text/css" rel="stylesheet">
     </head>
     <body>
-        <div class="fadeInDown listViewApp">      
+        <div class="fadeInDown listViewApp">
             <ul data-role="listview" data-inset="true">
-                <li><a href="{{ url('app/estaberlecimento/cardapio') }}">
-                    <img src="/img/blackburguer.png" class="imgCenter">
-                    <h2>BlackBeard Burguer</h2>
-                    <p>18:00 - 00:00</p></a>
+                <?php foreach($estabelecimentos as $estabelecimento): ?>
+                <li><a href="{{ url('app/estabelecimento/cardapio/'.$estabelecimento->estcodigo) }}">
+                    <img src="/img/{{strtolower($estabelecimento->estnomerazao)}}.jfif" class="imgCenter">
+                    <h2><?= $estabelecimento->estnomerazao ?></h2>
+                    <p><?= $estabelecimento->estendereco ?></p>
+                    <p><?= $estabelecimento->esthorario ?></p></a>
                 </li>
-                <li><a href="{{ url('app/estaberlecimento/cardapio') }}">
-                    <img src="/img/china.png" class="imgCenter">
-                    <h2>China</h2>
-                    <p>18:00 - 23:00</p></a>
-                </li>
-                <li><a href="{{ url('app/estaberlecimento/cardapio') }}">
-                    <img src="/img/dbest.jfif" class="imgCenter">
-                    <h2>D-best</h2>
-                    <p>18:00 - 01:00</p></a>
-                </li>
-                <li><a href="{{ url('app/estaberlecimento/cardapio') }}">
-                    <img src="/img/gdoky.jfif" class="imgCenter">
-                    <h2>Gddoky</h2>
-                    <p>18:00 - 00:00</p></a>
-                </li>
-                <li><a href="{{ url('app/estaberlecimento/cardapio') }}">
-                    <img src="/img/kaishi.jfif" class="imgCenter">
-                    <h2>Kaishi</h2>
-                    <p>18:00 - 00:00</p></a>
-                </li>
-                <li><a href="{{ url('app/estaberlecimento/cardapio') }}">
-                    <img src="/img/lucca.jfif" class="imgCenter">
-                    <h2>Lucca</h2>
-                    <p>18:00 - 00:00</p></a>
-                </li>
-                <li><a href="{{ url('app/estaberlecimento/cardapio') }}">
-                    <img src="/img/opa.png" class="imgCenter">
-                    <h2>OPA</h2>
-                    <p>18:00 - 00:00</p></a>
-                </li>
-                <li><a href="{{ url('app/estaberlecimento/cardapio') }}">
-                    <img src="/img/senhorhamburguer.jfif" class="imgCenter">
-                    <h2>Senhor Hamburgur</h2>
-                    <p>18:00 - 00:00</p></a>
-                </li>
+                <?php endforeach ?>
             </ul>
             @component('app.componentes.nav')
             @endcomponent
@@ -63,5 +31,7 @@
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
         <script type="text/javascript" src="/js/estabelecimento.js"></script>
+        <script src="/js/app.js"></script>
+        <script src="/js/produto.js"></script>
     </body>
 </html>

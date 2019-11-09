@@ -32,13 +32,23 @@ Route::group([
 ], function($router) {
     Route::get('{route}', 'HomeController@index')->where('route', 'index|home');
 
-    //Consultas
-    Route::get('/estaberlecimento/cardapio', 'EstabelecimentoController@cardapio')->name('estabelecimento.cardapio');
-    Route::get('/estabelecimentos'         , 'EstabelecimentoController@index')->name('estabelecimentos');
-    Route::get('/pedidos'                  , 'PedidoController@index')->name('pedidos');
+    //Estabelecimento e Cardápio
+    Route::get('/estabelecimentos', 'EstabelecimentoController@index')->name('estabelecimentos');
+    Route::get('/estabelecimento/cardapio/{codigo}'          , 'EstabelecimentoController@getCategorias')->name('estabelecimento.cardapio');
+    Route::get('/estabelecimento/produto/{codigo}'           , 'CardapioController@getProduto')->name('estabelecimento.produto');
+    Route::get('/estabelecimento/petiscos'                   , 'CardapioController@getPetiscos')->name('estabelecimento.petiscos');
+    Route::get('/estabelecimento/produtos/categoria/{codigo}', 'CardapioController@getProdutosCategoria')->name('estabelecimento.produtos');
 
-    //Cadastros
+    //Pedidos
+    Route::get('/pedidos/{codigo}'       , 'PedidoController@index')->name('pedidos');
+    Route::post('/pedido'                , 'PedidoController@store')->name('pedido');
+    Route::get('/pedidos/pedido/{codigo}', 'PedidoController@getPedido')->name('pedido');
+
+    //Usuário
     Route::get('/cadastroUsuario', 'UsuarioController@createUsuario')->name('cadastroUsuario');
-
     Route::get('/usuario/perfil', 'UsuarioController@indexUsuario')->name('usuario.perfil');
+
+    //Ajax
+    Route::get('/getAllMesaEstabelecimento/{codigo}', 'EstabelecimentoController@getMesas')->name('estabelecimento.mesas');    
+    Route::get('/getValorTotalPedido/{codigo}'      , 'PedidoController@getValorTotalPedido')->name('estabelecimento.mesas');
 });

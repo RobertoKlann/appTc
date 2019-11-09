@@ -3,6 +3,9 @@
 namespace App\Http\Controllers\BobWaiter;
 
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\DB;
+use Request;
+use Response;
 
 /**
  * Controllador de Estabelecimentos.
@@ -14,11 +17,30 @@ use App\Http\Controllers\Controller;
 class EstabelecimentoController extends Controller {
 
     public function index() {
-        return view('app/ViewEstabelecimentos');
+        $est = DB::select("SELECT * FROM tbestabelecimento");
+
+        return view('app/ViewEstabelecimentos')->with('estabelecimentos', $est);
     }
 
-    public function cardapio() {
-        return view('app/ViewCardapio');
+    public function getCategorias($codigo) {
+        $cat = DB::select("SELECT *
+                             FROM tbcategoria
+                            WHERE TRUE
+                              AND estcodigo = " . $codigo);
+
+        return view('app/ViewCardapio')->with('categorias', $cat);
+    }
+
+    public function getMesas($codigo) {
+        $mesas = DB::select("SELECT msacodigo
+                             FROM tbmesa
+                            WHERE TRUE
+                              AND estcodigo = " . $codigo);
+
+        $max = DB::select("SELECT MAX(pedcodigo)
+                             FROM tbpedido");
+
+        return response()->json(['mesas' => $mesas, 'maxPed' => $max]);
     }
 
     public function produtoCategoria() {

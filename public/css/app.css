@@ -273,3 +273,7 @@ h2.active {
 .btn-red-app {
     background-color: #ff0000f5 !important;
 }
+
+.modal-backdrop {
+    z-index: -1;
+}

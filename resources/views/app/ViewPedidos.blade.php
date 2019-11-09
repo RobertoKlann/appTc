@@ -13,56 +13,13 @@
     <body>
         <div class="fadeInDown listViewApp">      
             <ul data-role="listview" data-inset="true">
-                <li><a href="{{ url('app/estaberlecimento/cardapio') }}">
-                    <img src="/img/blackburguer.png" class="imgCenter">
-                    <h2>BlackBeard Burguer</h2>
-                    <p>Pedido 01</p></a>
+                <?php foreach($pedidos as $pedido): ?>
+                <li><a href="{{ url('app/pedidos/pedido/'. $pedido->pedcodigo) }}">
+                    <img src="/img/{{strtolower($pedido->estnomerazao)}}.jfif" class="imgCenter">
+                    <h2>Pedido {{ $pedido->pedcodigo }}</h2>
+                    <p>{{ $pedido->estnomerazao }}</p></a>
                 </li>
-                <li><a href="{{ url('app/estaberlecimento/cardapio') }}">
-                    <img src="/img/china.png" class="imgCenter">
-                    <h2>China</h2>
-                    <p>Pedido 02</p></a>
-                </li>
-                <li><a href="{{ url('app/estaberlecimento/cardapio') }}">
-                    <img src="/img/blackburguer.png" class="imgCenter">
-                    <h2>BlackBeard Burguer</h2>
-                    <p>Pedido 03</p></a>
-                </li>
-                <li><a href="{{ url('app/estaberlecimento/cardapio') }}">
-                    <img src="/img/blackburguer.png" class="imgCenter">
-                    <h2>BlackBeard Burguer</h2>
-                    <p>Pedido 04</p></a>
-                </li>
-                <li><a href="{{ url('app/estaberlecimento/cardapio') }}">
-                    <img src="/img/opa.png" class="imgCenter">
-                    <h2>OPA</h2>
-                    <p>Pedido 05</p></a>
-                </li>
-                <li><a href="{{ url('app/estaberlecimento/cardapio') }}">
-                    <img src="/img/opa.png" class="imgCenter">
-                    <h2>OPA</h2>
-                    <p>Pedido 06</p></a>
-                </li>
-                <li><a href="{{ url('app/estaberlecimento/cardapio') }}">
-                    <img src="/img/opa.png" class="imgCenter">
-                    <h2>OPA</h2>
-                    <p>Pedido 07</p></a>
-                </li>
-                <li><a href="{{ url('app/estaberlecimento/cardapio') }}">
-                    <img src="/img/senhorhamburguer.jfif" class="imgCenter">
-                    <h2>Senhor Hamburguer</h2>
-                    <p>Pedido 08</p></a>
-                </li>
-                <li><a href="{{ url('app/estaberlecimento/cardapio') }}">
-                    <img src="/img/senhorhamburguer.jfif" class="imgCenter">
-                    <h2>Senhor Hamburguer</h2>
-                    <p>Pedido 09</p></a>
-                </li>
-                <li><a href="{{ url('app/estaberlecimento/cardapio') }}">
-                    <img src="/img/senhorhamburguer.jfif" class="imgCenter">
-                    <h2>Senhor Hamburguer</h2>
-                    <p>Pedido 10</p></a>
-                </li>
+                <?php endforeach ?>
             </ul>
             @component('app.componentes.nav')
             @endcomponent
@@ -72,5 +29,7 @@
         <script src="https://kit.fontawesome.com/67c671c2e1.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+        <script src="/js/app.js"></script>
+        <script src="/js/produto.js"></script>
     </body>
 </html>

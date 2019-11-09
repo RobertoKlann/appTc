@@ -1,91 +1,92 @@
-$('button[name=incluir]').click(function() {   
 
-    $.get('bobWaiter/getAllCategoriasProduto', function(dados){
-        $('select[name=catcodigo]').html('<option value="">Selecione</option>');
-        for(i = 0; i < dados.length; i++) {            
-            $('select[name=catcodigo]').append($('<option>', {
-                value: dados[i].ctgcodigo,
-                text: dados[i].ctgdescricao
-            }));
-        }        
-    });
-
-    $('select[name=catcodigo]').change(function() {
-        var iCodigoCategoria = $('select[name=catcodigo]').val();
-        $.get('bobWaiter/getAllSubCategoriasProduto/' + iCodigoCategoria, function(dados){
-            $('select[name=subcatcodigo]').html('<option value="">Selecione</option>');            
-            $('select[name=subcatcodigo]').removeAttr("disabled");
-
-            for(i = 0; i < dados.length; i++) {            
-                $('select[name=subcatcodigo]').append($('<option>', {
-                    value: dados[i].sbccodigo,
-                    text: dados[i].sbcdescricao
-                }));
-            }        
-        });
-    });  
-});
-
-$(document).ready(function(){
-    if($('#form-incluir-produto')[0]) {
-        $.get('/bobWaiter/getProximoCodigoProduto', function(dados){
-            $('input[name=codigo]').val(dados[0].maxcodigo + 1);
-        });
-        
-        $.get('/bobWaiter/getAllCategoriasProduto', function(dados){
-            $('select[name=catcodigo]').html('<option value="">Selecione</option>');
-            for(i = 0; i < dados.length; i++) {            
-                $('select[name=ctgcodigo]').append($('<option>', {
-                    value: dados[i].ctgcodigo,
-                    text: dados[i].ctgdescricao
+$(document).ready(function() {
+    if($('#codigoEstabelecimento').val()) {
+        $.get('/app/getAllMesaEstabelecimento/' + $('#codigoEstabelecimento').val(), function(dados) {
+            $('#codigoPedido').val(dados.maxPed[0].max + 1);
+            for(i = 0; i < dados.mesas.length; i++) {            
+                $('select[name=msacodigo]').append($('<option>', {
+                    value: dados.mesas[i].msacodigo,
+                    text: 'Mesa: ' + dados.mesas[i].msacodigo
                 }));
             }        
         });
     }
-    
-    if($('#form-alterar-produto')[0] && $('input[name=codigo]')) {
-        $.get('/bobWaiter/getAllCategoriasProduto', function(dados){
-            let bSelected = false,
-                categoria = $('input[id=categoria-produto]').val();
-            
-            $('select').html('<option value="">Selecione</option>');
-            for(i = 0; i < dados.length; i++) {
-                if(dados[i].ctgcodigo == categoria) {
-                    bSelected = true;
-                } else {
-                    bSelected = false;
-                }
-                
-                $('select').append($('<option>', {
-                    value: dados[i].ctgcodigo,
-                    text: dados[i].ctgdescricao,
-                    selected: bSelected
-                }));
-            }
+
+    $("#cancelarPedido").on("click", function () {
+        localStorage.clear();
+        window.location.href = 'http://127.0.0.1:8000/app/estabelecimentos';
+    });
+
+    $("#anchorAddItem").on("click", function () {
+        let codigo = $('#codigoEstabelecimento').val();
+        window.location.href = 'http://127.0.0.1:8000/app/estabelecimento/cardapio/' + codigo;
+    });
+
+    $(".mais").on("click", function () {
+        let qtdeAtual = this.parentElement.getElementsByTagName('input').num.value;
+        this.parentElement.getElementsByTagName('input').num.value = (parseInt(qtdeAtual) + 1);
+    });
+
+    $(".menos").on("click", function () {
+        let qtdeAtual = this.parentElement.getElementsByTagName('input').num.value;
+        if(qtdeAtual == "1") {
+            return;
+        }
+        this.parentElement.getElementsByTagName('input').num.value = (parseInt(qtdeAtual) - 1);
+    });
+
+    if($('#nomerazao').val() && $('#horario').val() && $('#local').val()) {
+        $('#tituloPedido')[0].innerHTML           = 'Detalhes do Pedido 0' + $('#pedidoCodigo').val();
+        $('#nomeEstabelecimento')[0].innerHTML    = 'Estabelecimento: ' + $('#nomerazao').val();
+        $('#horarioEstabelecimento')[0].innerHTML = 'Horário de atendimento: ' +  $('#horario').val();
+        $('#localEstabelecimento')[0].innerHTML   = 'Endereço: ' +  $('#local').val();
+        $('#imagemEstabelecimento')[0].src        = "/img/" + $('#imagem').val() + ".jfif";
+    }
+
+    if($('#valorTotalPedido')[0]) {
+        $.get('/app/getValorTotalPedido/' + getCodigoPedido(), function(dados) {
+            $('#valorTotalPedido')[0].innerHTML ='Valor Total do pedido: ' +  dados[0].valortotal;
         });
     }
-    
-    $('a[name=excluirProduto]').click(function() {
-        let iCodigo       = $(this)[0].attributes.value.value,
-            laravel_token = $("#token").val();
-            
-        $.ajax({
-            url: 'http://127.0.0.1:8000/bobWaiter/produto/destroy/' + iCodigo,
-            type: 'delete',
-            dataType: 'JSON',
-            headers: {
-                'X-CSRF-Token': laravel_token
-            },
-            success: function (data) {
-                if(data.success !== 'true') {
-                    swal("Não foi possível excluir o produto!", "", "warning");
-                } else {
-                    swal("Produto excluido com sucesso!", "", "success");
-                    setTimeout(function() {
-                        window.location.href = 'http://127.0.0.1:8000/bobWaiter/produto';
-                    }, 2000);
-                }
-            }
-        }); 
+
+    $("#confirmar").on("click", function () {
+        var codigoUsuario = 2,
+            codigoPedido  = $('#codigoPedido').val();
+            codigoEst     = $('#codigoEstabelecimento').val(),
+            codigoMesa    = $('#msacodigo').val(),
+            produtos      = $('input[name=codigoProduto]'),
+            quantidades   = $('input[name=numero]'),
+            codigoProduto = [];
+
+        for(var i = 0; i < produtos.length; i++) {            
+            codigoProduto.push({
+                "codigoProduto": $('input[name=codigoProduto]')[i].value,
+                "quantidade"   : $('input[name=numero]')[i].value
+            });
+        }
+
+        let dados = {
+            "codigoPedido"  : codigoPedido,
+            "codigoEst"     : codigoEst,
+            "codigoUsuario" : codigoUsuario,
+            "codigoMesa"    : codigoMesa,
+            "produtos"      : codigoProduto
+        };
+
+        axios({
+            method : 'post',
+            url    : 'http://127.0.0.1:8000/app/pedido',
+            data   : dados
+        })
+        .then(response => {
+            localStorage.clear();
+            window.location.href = 'http://127.0.0.1:8000/app/pedidos/pedido/' + response.data;
+        });
     });
+    
 });
+
+function getCodigoPedido() {
+    let codigo = window.location.href.split('pedido/');
+    return codigo[1];
+}

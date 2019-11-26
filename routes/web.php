@@ -27,8 +27,7 @@ Route::group([
 
 Route::group([
     'namespace'  => 'BobWaiter',
-    'prefix'     => 'app'//,
-    //'middleware' => 'auth'
+    'prefix'     => 'app',
 ], function($router) {
     Route::get('{route}', 'HomeController@index')->where('route', 'index|home');
 

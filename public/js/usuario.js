@@ -1,4 +1,10 @@
 $(document).ready(function() {
+
+
+    $("#logout").on("click", function () {
+        sessionStorage.removeItem('usuario');
+        window.location.href = 'http://127.0.0.1:8000/auth/logout';
+    });
     
     $('#perfil').addClass('ui-btn-active');
     $('#home').removeClass('ui-btn-active');

@@ -56,5 +56,6 @@ function onlynumber(evt) {
 }
 
 function getCodigoUsuario() {
-    return 2;
+    let codigo = sessionStorage.getItem('usuario')
+    return parseInt(codigo);
 }

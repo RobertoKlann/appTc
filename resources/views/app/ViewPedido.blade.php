@@ -34,7 +34,7 @@
                         </div>
                         <div class="ui-body ui-body-a">
                         <?php foreach($pedidos as $pedido): ?>
-                            <p style="color: #000; font-weight: 500;">{{$pedido->prddescricao}} - Qtde: {{$pedido->itpquantidade}} - Vlr. Unit: {{$pedido->prdpreco}}</p>
+                            <p style="color: #000; font-weight: 500;">{{$pedido->prddescricao}} - Qtde: {{$pedido->itpquantidade}} - Vlr. Unit: {{number_format ($pedido->prdpreco, 2, ',', '.')}}</p>
                             <input type="hidden" id="nomerazao" value="<?= $pedido->estnomerazao ?>">
                             <input type="hidden" id="horario" value="<?= $pedido->esthorario ?>">
                             <input type="hidden" id="pedidoCodigo" value="<?= $pedido->pedcodigo ?>">

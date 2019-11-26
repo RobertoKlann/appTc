@@ -20,7 +20,7 @@
                     <img src="/img/{{strtolower($produto->prddescricao)}}.jpg" class="imgCenter">
                     <h2>{{$produto->prddescricao}}</h2>
                     <p style="display: none">{{$produto->prdcodigo}}</p>
-                    <p>{{$produto->prdpreco}}</p></a>
+                    <p>{{number_format ($produto->prdpreco, 2, ',', '.')}}</p></a>
                 </li>
                 <?php endforeach ?>
             </ul>

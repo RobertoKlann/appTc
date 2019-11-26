@@ -33,5 +33,10 @@
         <script type="text/javascript" src="/js/estabelecimento.js"></script>
         <script src="/js/app.js"></script>
         <script src="/js/produto.js"></script>
+        <script>
+            @if (Auth::check())
+                sessionStorage.setItem('usuario', {{ Auth::user()->usucodigo }}) 
+            @endif
+        </script>
     </body>
 </html>

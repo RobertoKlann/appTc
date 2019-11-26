@@ -13,6 +13,10 @@ use App\Http\Controllers\Controller;
  */
 class UsuarioController extends Controller {
 
+    public function __constructor() {
+        $this->middleware('auth', ['except' => ['createUsuario']]);
+    }
+
     public function createUsuario() {
         return view('app/ViewCadastroUsuario');
     }

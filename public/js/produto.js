@@ -45,12 +45,12 @@ $(document).ready(function() {
 
     if($('#valorTotalPedido')[0]) {
         $.get('/app/getValorTotalPedido/' + getCodigoPedido(), function(dados) {
-            $('#valorTotalPedido')[0].innerHTML ='Valor Total do pedido: ' +  dados[0].valortotal;
+            $('#valorTotalPedido')[0].innerHTML ='Valor Total do pedido: ' +   dados[0].valortotal.toString().replace(".", ",");
         });
     }
 
     $("#confirmar").on("click", function () {
-        var codigoUsuario = 2,
+        var codigoUsuario = getCodigoUsuario(),
             codigoPedido  = $('#codigoPedido').val();
             codigoEst     = $('#codigoEstabelecimento').val(),
             codigoMesa    = $('#msacodigo').val(),
@@ -89,4 +89,9 @@ $(document).ready(function() {
 function getCodigoPedido() {
     let codigo = window.location.href.split('pedido/');
     return codigo[1];
+}
+
+function getCodigoUsuario() {
+    let codigo = sessionStorage.getItem('usuario')
+    return parseInt(codigo);
 }

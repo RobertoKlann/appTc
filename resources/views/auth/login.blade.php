@@ -19,9 +19,9 @@
                     <img src="/img/ninja.jfif" id="icon" alt="User Icon" />
                 </div>
 
-                <form>
+                <form action="login" method="post">
                     <input type="text" id="email" class="fadeIn second teste" name="email" placeholder="Informe seu email">
-                    <input type="text" id="password" class="fadeIn third teste" name="password" placeholder="Informe sua senha">
+                    <input type="password" id="password" class="fadeIn third teste" name="password" placeholder="Informe sua senha">
                     <input type="submit" class="fadeIn fourth" value="Acessar" style="background-color: #ff0000f5;">
 
                     <input type="hidden" name="_method" value="POST">

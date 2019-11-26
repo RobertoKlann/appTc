@@ -16,6 +16,10 @@ use Illuminate\Support\Facades\Response;
  */
 class PedidoController extends Controller {
 
+    public function __constructor() {
+        $this->middleware('auth');
+    }
+
     public function index($codigo) {
         $pedidos = DB::select(
             "SELECT *

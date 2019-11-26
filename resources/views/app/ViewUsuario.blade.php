@@ -17,7 +17,7 @@
                     <div class="mx-auto col-sm-6 mb-5">
                         <div class="card">
                             <div class="card-header">
-                                <h4 class="mb-0" style="text-align: center;"><b>Cadastro</b></h4>
+                                <h4 class="mb-0" style="text-align: center;"><b>Manutenção</b></h4>
                             </div>
                             <div class="card-body">
                                 <form class="form" role="form" autocomplete="off">
@@ -73,6 +73,12 @@
                                         <label class="col-lg-3 col-form-label form-control-label"></label>
                                         <div class="col-lg-9">
                                             <input type="button" class="btn btn-red-app mb-0" value="Confirmar">
+                                        </div>
+                                    </div>
+                                    <div class="form-group row mb-1">
+                                        <label class="col-lg-3 col-form-label form-control-label"></label>
+                                        <div class="col-lg-9">
+                                            <input type="button" id="logout" class="btn btn-red-app mb-0" value="Sair &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp">
                                         </div>
                                     </div>
                                 </form>

@@ -15,6 +15,10 @@ use Request;
  */
 class CardapioController extends Controller {
 
+    public function __constructor() {
+        $this->middleware('auth');
+    }
+
     public function getProdutosCategoria($codigo) {
         $pro = DB::select("SELECT *
                              FROM tbproduto

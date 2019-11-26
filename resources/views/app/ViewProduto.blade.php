@@ -22,7 +22,7 @@
                         <div class="col-md-4" style="display: flex;">
                             <i id="minus" class="fa fa-minus-circle menos" aria-hidden="true" style="margin-top: 20px;"></i> &nbsp; <input style="width: 40px;" type="number" name="numero" id="num" value="1"> &nbsp;<i class="fa fa-plus-circle mais" id="more" aria-hidden="true" style="margin-top: 20px;"></i>
                             <p style="margin-top: 20px; margin-left: 10px;">{{$produto->prddescricao}}</p>
-                            <p style="margin-top: 20px; margin-left: 30%; color: red;">{{$produto->prdpreco}}</p>
+                            <p style="margin-top: 20px; margin-left: 30%; color: red;">{{number_format ($produto->prdpreco, 2, ',', '.')}}</p>
                             <input type="hidden" name="codigoProduto" value="{{$produto->prdcodigo}}">
                         </div>
                     </div>
@@ -35,7 +35,7 @@
                             <h3 style="font-weight: 700;">Pagamento</h3>
                         </div>
                         <div class="ui-body ui-body-a">
-                            <p style="color: red; font-weight: 500;">Total do pedido: {{$produto->prdpreco}}</p>
+                            <p style="color: red; font-weight: 500;">Total do pedido: {{number_format ($produto->prdpreco, 2, ',', '.')}}</p>
                         </div>
                     </div>
                     <br>

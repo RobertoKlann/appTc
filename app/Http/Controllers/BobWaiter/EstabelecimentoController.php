@@ -16,6 +16,10 @@ use Response;
  */
 class EstabelecimentoController extends Controller {
 
+    public function __constructor() {
+        $this->middleware('auth');
+    }
+
     public function index() {
         $est = DB::select("SELECT * FROM tbestabelecimento");
 
